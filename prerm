@@ -1,0 +1,7 @@
+#!/bin/bash
+
+echo Removing caches...
+rmdir /var/mobile/Library/Caches/com.apple.keyboards
+echo Caches removed!
+
+exit 0

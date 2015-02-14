@@ -1,0 +1,10 @@
+{
+	entry = {
+		bundle = BlueBoardPrefs;
+		cell = PSLinkCell;
+		detail = "BlueBoardPrefsListController";
+		icon = "BlueBoard.png";
+		isController = 1;
+		label = BlueBoard;
+	};
+}
