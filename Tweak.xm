@@ -1,10 +1,5 @@
 //Define prefs
-#import <UIKit/UIKit.h>
-#import <CoreGraphics/CoreGraphics.h>
-#import <QuartzCore/QuartzCore.h>
-
 NSDictionary *dict = [[NSDictionary alloc] initWithContentsOfFile:@"/var/mobile/Library/Preferences/com.xtm3x.blueboard~prefs.plist"];
-static UIImageView *imgView =[[UIImageView alloc] initWithFrame:CGRectMake(0,0,20,20)];
 
 //Blue keys
 %hook UIKBRenderFactory
