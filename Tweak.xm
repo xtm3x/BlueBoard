@@ -1,39 +1,30 @@
 //Define prefs
-NSDictionary *dict = [[NSDictionary alloc] initWithContentsOfFile:@"/var/mobile/Library/Preferences/com.xtm3x.blueboard~prefs.plist"];
+static NSDictionary *dict;
 
+static BOOL enabled;
+static BOOL isDark;
+
+%group Memes
 //Blue keys
 %hook UIKBRenderFactory
 -(BOOL) useBlueThemingForKey:(id)arg1 {
-	if ([[dict objectForKey:@"enabled"] boolValue])
-	{
-		return true;
-	}
-	else
-	{
-		return %orig;
-	}
+	return YES;
 }
 %end
 
 //Black Keyboard
-
 %hook UITextInputTraits
 -(int) keyboardAppearance {
-	if ([[dict objectForKey:@"enabled"] boolValue])
-	{
-		if ([[dict objectForKey:@"isDark"] boolValue])
-		{
-			return 1;
-		}
-		else
-		{
-			return %orig;
-		}
-	}
-	else
-	{
-		return %orig;
-	}
-	
+	if (isDark) return YES;
+	return %orig;
 }
 %end
+%end
+
+%ctor {
+	dict = [[NSDictionary alloc] initWithContentsOfFile:@"/var/mobile/Library/Preferences/com.xtm3x.blueboard~prefs.plist"];
+	enabled = [[dict objectForKey:@"enabled"] boolValue];
+	isDark = [[dict objectForKey:@"isDark"] boolValue];
+	
+	if (enabled) %init(Memes);
+}
